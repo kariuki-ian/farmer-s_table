@@ -5,7 +5,6 @@ Getting Started
 
 To get started with this project, clone the repository and install the dependencies using npm:
 
-bash
 
 git clone <repository-url>
 cd <repository-name>
@@ -15,14 +14,12 @@ Create a .env file in the root directory of the project, and add the following e
 
 makefile
 
-DB_CONNECTION_STRING=<your-mongodb-connection-string>
-JWT_SECRET=<your-jwt-secret>
+CONNECTION_STRING=<your-mongodb-connection-string>
 
 To start the server, run:
 
-bash
 
-npm start
+npm run dev
 
 API Endpoints
 User Routes
