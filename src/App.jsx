@@ -2,9 +2,10 @@ import { useState } from 'react'
 import './App.css'
 import Navbar from './Components/Navbar'
 import Main from './Components/Main_Section'
+import Categories from './Components/Categories'; 
 import berries from "./assets/berries.jpg"
 import cheese from "./assets/cheese.jpg"
-
+import {Routes, Route} from 'react-router-dom';
 
 
 function App() {
@@ -42,7 +43,7 @@ function App() {
   const [showCart, setShowCart] = useState(false);
 
   return (
-    <>
+    <div className="App">
       <Navbar
         favourite={favourite.length}
         items={items.length}
@@ -62,10 +63,11 @@ function App() {
         showCarts={showCart}
         setShowCart={setShowCart}
         setShowFav={setShowFav}
-
       />
-
-    </>
+      <Routes>
+        <Route path="/categories" element={<Categories/>}/>
+      </Routes>
+    </div>
   )
 }
 
