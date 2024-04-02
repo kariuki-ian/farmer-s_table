@@ -2,45 +2,31 @@ import { useState } from 'react'
 import './App.css'
 import Navbar from './Components/Navbar'
 import Main from './Components/Main_Section'
-import Categories from './Components/Categories'; 
-import berries from "./assets/berries.jpg"
-import cheese from "./assets/cheese.jpg"
-import {Routes, Route} from 'react-router-dom';
+import ProductTest from './Components/Product';
+import { Routes, Route } from 'react-router-dom';
 
 
 function App() {
-  let products = [
-    {
-      id: 1,
-      name: "Berries",
-      image: berries,
-      description: "Blackberries - Organic,Fresh 6oz, 6 Ounce"
-    },
-    {
-      id: 2,
-      name: "Cheese",
-      image: cheese,
-      description: "Arla - Dofino Havarti Cheese Slices - Smoked, 145 Gram"
-
-    },
-    {
-      id: 3,
-      image: berries,
-      name: "Berries",
-      description: "Blackberries - Organic,Fresh 6oz, 6 Ounce"
-    },
-    {
-      id: 4,
-      name: "Cheese",
-      image: cheese,
-      description: "Arla - Dofino Havarti Cheese Slices - Smoked, 145 Gram"
-
+  const fetchProducts = async () => {
+    try {
+      const response = await fetch('http://localhost:3000/products');
+      if (!response.ok) {
+        throw new Error('Failed to fetch products');
+      }
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error('Error fetching products:', error);
     }
-  ]
+  };
+
+  let products = fetchProducts();
+  console.log("Product Data: ", products);
   const [favourite, setFavurite] = useState([]);
   const [items, setItems] = useState([]);
   const [showFav, setShowFav] = useState(false);
   const [showCart, setShowCart] = useState(false);
+
 
   return (
     <div className="App">
@@ -54,18 +40,18 @@ function App() {
         setShowFav={setShowFav}
       />
       <Main
-        favourite={favourite}
-        setFavourite={setFavurite}
-        items={items}
-        setItems={setItems}
-        products={products}
-        showFav={showFav}
-        showCarts={showCart}
-        setShowCart={setShowCart}
-        setShowFav={setShowFav}
-      />
+          favourite={favourite}
+          setFavourite={setFavurite}
+          items={items}
+          setItems={setItems}
+          products={products}
+          showFav={showFav}
+          showCarts={showCart}
+          setShowCart={setShowCart}
+          setShowFav={setShowFav}
+        />
       <Routes>
-        <Route path="/categories" element={<Categories/>}/>
+        <Route path="categories" element={<ProductTest/>} />
       </Routes>
     </div>
   )

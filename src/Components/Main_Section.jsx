@@ -3,8 +3,6 @@ import { RiCloseCircleLine } from "react-icons/ri";
 import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 
-
-
 //Side Content
 const Side_Content = (props) => {
     let Content
@@ -59,7 +57,6 @@ const Side_Content = (props) => {
         )
     }
 
-
     return (
         <div className="fixed right-0 bottom-0 h-full  w-[300px] backdrop-blur z-10 shadow-2xl ">
             <div >
@@ -83,11 +80,9 @@ const Product = (props) => {
                     loading="lazy"
                     alt="Product Image"
                     className='pdt_image object-contain h-56'
-
                 />
                 <IoMdHeartEmpty className="favourite h-7 w-7 absolute top-2 right-2" onClick={props.favClick} />
             </div>
-
             <div>
                 <p className="font-poppins text-sm font-semibold text-left pl-2">{props.name}</p>
                 <p className='text-sm font-poppins'>{props.description}</p>
@@ -95,11 +90,7 @@ const Product = (props) => {
             <button className='font-semibold text-white px-5 py-3 bg-emerald-600 rounded-md mt-4 md:ml-20' onClick={props.click}>
                 Add To Cart
             </button>
-
-
         </div>
-
-
     );
 }
 
@@ -136,7 +127,7 @@ const CategoryRoutes = () => {
             <NavLink to="/categories" className="py-2">All</NavLink>
             {categories.length > 0 && 
                 categories.map(category => (
-                    <NavLink key={category._id} to={`/categories/${category.name}`} className="py-2">
+                    <NavLink key={category._id} to={`/categories/${category._id}`} className="py-2">
                         {category.name}
                     </NavLink>
                 ))
@@ -145,8 +136,25 @@ const CategoryRoutes = () => {
     )
 }
 
-const Main = ({ favourite, setFavourite, items, setItems, products, showFav, showCarts, setShowCart, setShowFav }) => {
+const Main = ({ favourite, setFavourite, items, setItems, showFav, showCarts, setShowCart, setShowFav }) => {
+    const [products, setProducts] = useState([]);
 
+    useEffect(() => {
+        const fetchProducts = async () => {
+            try {
+                const response = await fetch('http://localhost:3000/products');
+                if (!response.ok) {
+                    throw new Error('Failed to fetch products');
+                }
+                const data = await response.json();
+                setProducts(data);
+            } catch (error) {
+                console.error('Error fetching products:', error);
+            }
+        };
+
+        fetchProducts();
+    }, []);
     const handleFavClick = (product) => {
         const index = favourite.findIndex((likedProduct) => likedProduct.id === product.id);
         if (index !== -1) {
@@ -185,7 +193,7 @@ const Main = ({ favourite, setFavourite, items, setItems, products, showFav, sho
             )}
 
             <CategoryRoutes />
-
+            
             <div className='container w-full mx-auto flex gap-5 flex-wrap mt-5 pl-7 z-20'>
                 {products.map((product) => (
                     <Product
