@@ -2,6 +2,7 @@ import { IoMdHeartEmpty } from "react-icons/io";
 import { RiCloseCircleLine } from "react-icons/ri";
 import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
+import ProductList from './ProductList';
 
 //Side Content
 const Side_Content = (props) => {
@@ -70,30 +71,6 @@ const Side_Content = (props) => {
     );
 }
 
-//Card Component
-const Product = (props) => {
-    return (
-        <div className='cards md:w-[20%] rounded-md shadow-md pb-5'>
-            <div className="relative">
-                <img
-                    src={props.image}
-                    loading="lazy"
-                    alt="Product Image"
-                    className='pdt_image object-contain h-56'
-                />
-                <IoMdHeartEmpty className="favourite h-7 w-7 absolute top-2 right-2" onClick={props.favClick} />
-            </div>
-            <div>
-                <p className="font-poppins text-sm font-semibold text-left pl-2">{props.name}</p>
-                <p className='text-sm font-poppins'>{props.description}</p>
-            </div>
-            <button className='font-semibold text-white px-5 py-3 bg-emerald-600 rounded-md mt-4 md:ml-20' onClick={props.click}>
-                Add To Cart
-            </button>
-        </div>
-    );
-}
-
 const CategoryRoutes = () => {
     const [categories, setCategories] = useState([]);
     async function getCategories() {
@@ -138,78 +115,40 @@ const CategoryRoutes = () => {
 
 const Main = ({ favourite, setFavourite, items, setItems, showFav, showCarts, setShowCart, setShowFav }) => {
     const [products, setProducts] = useState([]);
-
+  
     useEffect(() => {
-        const fetchProducts = async () => {
-            try {
-                const response = await fetch('http://localhost:3000/products');
-                if (!response.ok) {
-                    throw new Error('Failed to fetch products');
-                }
-                const data = await response.json();
-                setProducts(data);
-            } catch (error) {
-                console.error('Error fetching products:', error);
-            }
-        };
-
-        fetchProducts();
+      const fetchProducts = async () => {
+        try {
+          const response = await fetch('http://localhost:3000/products');
+          if (!response.ok) {
+            throw new Error('Failed to fetch products');
+          }
+          const data = await response.json();
+          setProducts(data);
+        } catch (error) {
+          console.error('Error fetching products:', error);
+        }
+      };
+  
+      fetchProducts();
     }, []);
-    const handleFavClick = (product) => {
-        const index = favourite.findIndex((likedProduct) => likedProduct.id === product.id);
-        if (index !== -1) {
-            // If the product is already liked, remove it from the liked products list
-            const updatedLikedProducts = [...favourite];
-            updatedLikedProducts.splice(index, 1);
-            setFavourite(updatedLikedProducts);
 
-        } else {
-            // If the product is not liked, add it to the liked products list
-            setFavourite([...favourite, product]);
-        }
-    }
-    const handleItems = (product) => {
-        const index = items.findIndex(item => item.id === product.id);
-        if (index !== -1) {
-            const updatedItems = [...items];
-            updatedItems[index].quantity += 1;
-            setItems(updatedItems);
-        } else {
-            setItems([...items, { ...product, quantity: 1 }]);
-        }
-    };
-    return (
+      return (
         <>
-
-            {(showCarts || showFav) && (
-                <Side_Content
-                    showFav={showFav}
-                    showCarts={showCarts}
-                    setShowCart={setShowCart}
-                    setShowFav={setShowFav}
-                    items={items}
-                    favourite={favourite}
-                />
-            )}
-
-            <CategoryRoutes />
-            
-            <div className='container w-full mx-auto flex gap-5 flex-wrap mt-5 pl-7 z-20'>
-                {products.map((product) => (
-                    <Product
-                        key={product._id}
-                        name={product.name}
-                        image={product.image}
-                        description={product.description}
-                        click={() => handleItems(product)}
-                        favClick={() => handleFavClick(product)}
-                    />
-                ))}
-
-            </div>
-
+          {(showCarts || showFav) && (
+            <Side_Content
+              showFav={showFav}
+              showCarts={showCarts}
+              setShowCart={setShowCart}
+              setShowFav={setShowFav}
+              items={items}
+              favourite={favourite}
+            />
+          )}
+    
+          <CategoryRoutes />
         </>
-    );
-}
-
-export default Main;
+      );
+    };
+    
+    export default Main;
