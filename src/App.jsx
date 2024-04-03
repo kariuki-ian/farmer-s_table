@@ -70,7 +70,7 @@ function App() {
       <Routes>
         <Route path="/categories" element={<ProductList showAll/>} />
         {categories.map((category) => (
-          <Route key={category._id} path={`/categories/${category._id}`} element={<ProductList categoryName={category._id} />} />
+          <Route key={category._id} path={`/categories/${category.name.split(" ").join("")}`} element={<ProductList categoryName={category._id} />} />
         ))}
       </Routes>
     </div>

@@ -104,7 +104,7 @@ const CategoryRoutes = () => {
             <NavLink to="/categories" className="py-2">All</NavLink>
             {categories.length > 0 && 
                 categories.map(category => (
-                    <NavLink key={category._id} to={`/categories/${category._id}`} className="py-2">
+                    <NavLink key={category._id} to={`/categories/${category.name.split(" ").join("")}`} className="py-2">
                         {category.name}
                     </NavLink>
                 ))
