@@ -1,4 +1,5 @@
 import { IoMdHeartEmpty } from "react-icons/io";
+
 const Product = (props) => {
     return (
         <div className='cards md:w-[20%] rounded-md shadow-md pb-5'>
@@ -21,4 +22,5 @@ const Product = (props) => {
         </div>
     );
 }
+
 export default Product;

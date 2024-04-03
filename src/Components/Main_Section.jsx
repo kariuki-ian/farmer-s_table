@@ -5,16 +5,16 @@ import { NavLink } from 'react-router-dom';
 import ProductList from './ProductList';
 
 //Side Content
-const Side_Content = (props) => {
-    let Content
+const Side_Content = ({ favourite, items, showFav, setShowFav, setShowCart }) => {
+    let Content;
 
-    if (props.showFav) {
+    if (showFav) {
         Content = (
             // Show Favourite Items
             <>
                 <h2 className="font-poppins w-fit text-sm font-semibold mt-2 ml-2 mb-4">Favourite Items</h2>
                 <div className="flex flex-col gap-4">
-                    {props.favourite.map((item) => (
+                    {favourite.map((item) => (
                         <div className="flex border-1 rounded-md bg-white">
                             <img
                                 src={item.image}
@@ -37,7 +37,7 @@ const Side_Content = (props) => {
             <>
                 <h2 className="font-poppins w-fit text-sm font-semibold mt-2 ml-2 mb-4">Shopping Cart</h2>
                 <div className="flex flex-col gap-4">
-                    {props.items.map((item) => (
+                    {items.map((item) => (
                         <div className="flex border-1 rounded-md bg-white">
                             <img
                                 src={item.image}
@@ -50,18 +50,17 @@ const Side_Content = (props) => {
                                 <span className="w-fit flex mt-2"><span className="font-semibold" >Description:</span><span>{item.description}</span></span>
                                 <span className="w-fit flex gap-2"><span className="font-semibold">Quantity:</span>{item.quantity}</span>
                             </p>
-
                         </div>
                     ))}
                 </div>
             </>
-        )
+        );
     }
 
     return (
         <div className="fixed right-0 bottom-0 h-full  w-[300px] backdrop-blur z-10 shadow-2xl ">
             <div >
-                <button className="pl-64 w-full pt-2" onClick={() => { props.showFav ? props.setShowFav(false) : props.setShowCart(false) }}>
+                <button className="pl-64 w-full pt-2" onClick={() => { showFav ? setShowFav(false) : setShowCart(false) }}>
                     <RiCloseCircleLine color="green" size={30} />
                 </button>
                 {Content}
@@ -71,6 +70,7 @@ const Side_Content = (props) => {
     );
 }
 
+//Adds the category buttons with corresponding routes
 const CategoryRoutes = () => {
     const [categories, setCategories] = useState([]);
     async function getCategories() {
@@ -113,42 +113,23 @@ const CategoryRoutes = () => {
     )
 }
 
-const Main = ({ favourite, setFavourite, items, setItems, showFav, showCarts, setShowCart, setShowFav }) => {
-    const [products, setProducts] = useState([]);
-  
-    useEffect(() => {
-      const fetchProducts = async () => {
-        try {
-          const response = await fetch('http://localhost:3000/products');
-          if (!response.ok) {
-            throw new Error('Failed to fetch products');
-          }
-          const data = await response.json();
-          setProducts(data);
-        } catch (error) {
-          console.error('Error fetching products:', error);
-        }
-      };
-  
-      fetchProducts();
-    }, []);
+const Main = ({ favourite, items, showFav, showCarts, setShowCart, setShowFav }) => {
 
-      return (
+    return (
         <>
-          {(showCarts || showFav) && (
-            <Side_Content
-              showFav={showFav}
-              showCarts={showCarts}
-              setShowCart={setShowCart}
-              setShowFav={setShowFav}
-              items={items}
-              favourite={favourite}
-            />
-          )}
-    
-          <CategoryRoutes />
+            {(showCarts || showFav) && (
+                <Side_Content
+                    showFav={showFav}
+                    showCarts={showCarts}
+                    setShowCart={setShowCart}
+                    setShowFav={setShowFav}
+                    items={items}
+                    favourite={favourite}
+                />
+            )}
+            <CategoryRoutes />
         </>
-      );
-    };
-    
-    export default Main;
+    );
+};
+
+export default Main;

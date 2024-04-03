@@ -45,6 +45,33 @@ function App() {
     fetchCategories();
 }, []);
 
+const handleFavClick = (product) => {
+  setFavourite(prevFavourite => {
+    const index = prevFavourite.findIndex((likedProduct) => likedProduct.id === product.id);
+    if (index !== -1) {
+      // If the product is already liked, remove it from the liked products list
+      const updatedLikedProducts = [...prevFavourite];
+      updatedLikedProducts.splice(index, 1);
+      return updatedLikedProducts;
+    } else {
+      // If the product is not liked, add it to the liked products list
+      return [...prevFavourite, product];
+    }
+  });
+};
+
+const handleItems = (product) => {
+  const index = items.findIndex((item) => item.id === product.id);
+  if (index !== -1) {
+      // If the item already exists in the cart, increase its quantity by 1
+      const updatedItems = [...items];
+      updatedItems[index].quantity += 1;
+      setItems(updatedItems);
+  } else {
+      // If the item is not in the cart, add it with quantity 1
+      setItems([...items, { ...product, quantity: 1 }]);
+  }
+};
   return (
     <div className="App">
       <Navbar
@@ -68,9 +95,9 @@ function App() {
         setShowFav={setShowFav}
       />
       <Routes>
-        <Route path="/categories" element={<ProductList showAll/>} />
+        <Route path="/categories" element={<ProductList showAll handleFavClick={handleFavClick} handleItems={handleItems} />} />
         {categories.map((category) => (
-          <Route key={category._id} path={`/categories/${category.name.split(" ").join("")}`} element={<ProductList categoryName={category._id} />} />
+          <Route key={category._id} path={`/categories/${category.name.split(" ").join("")}`} element={<ProductList categoryName={category._id} handleFavClick={handleFavClick} handleItems={handleItems} />} />
         ))}
       </Routes>
     </div>
