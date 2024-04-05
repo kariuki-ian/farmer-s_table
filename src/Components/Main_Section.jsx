@@ -100,7 +100,7 @@ const CategoryRoutes = () => {
         fetchCategories();
     }, []);
     return (
-        <nav className="grid grid-cols-5 divide-x divide-black md:w-2/3 mx-auto text-xs font-poppins bg-orange-200 mt-5 rounded-sm">
+        <nav className="grid grid-cols-6 divide-x divide-black md:w-2/3 mx-auto text-xs font-poppins bg-orange-200 mt-5 rounded-sm">
             <NavLink to="/categories" className="py-2">All</NavLink>
             {categories.length > 0 && 
                 categories.map(category => (
@@ -109,6 +109,7 @@ const CategoryRoutes = () => {
                     </NavLink>
                 ))
             }
+            <NavLink to="/categories/newcategory" className="py-2">New Category</NavLink>
         </nav>
     )
 }
