@@ -100,7 +100,7 @@ const handleItems = (product) => {
         {categories.map((category) => (
           <Route key={category._id} path={`/categories/${category.name.split(" ").join("")}`} element={<ProductList categoryName={category._id} handleFavClick={handleFavClick} handleItems={handleItems} />} />
         ))}
-        <Route path="/categories/newcategory" element={<NewCategory catToPost/>}/>
+        <Route path="/categories/NewCategory" element={<NewCategory />}/>
       </Routes>
     </div>
   )

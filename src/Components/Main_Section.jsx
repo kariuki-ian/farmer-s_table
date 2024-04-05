@@ -109,7 +109,7 @@ const CategoryRoutes = () => {
                     </NavLink>
                 ))
             }
-            <NavLink to="/categories/newcategory" className="py-2">New Category</NavLink>
+            <NavLink to="/categories/NewCategory" className="py-2">Add Category</NavLink>
         </nav>
     )
 }
