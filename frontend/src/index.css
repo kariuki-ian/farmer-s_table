@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Quicksand:wght@400;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+html,body,#root,.app{
+  box-sizing: border-box; 
+  margin: 0;
+  background: white;
+  overflow-x: hidden;
+   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+ }
+a:hover{
+  color: white;
+}
+
+body{
+  background-color: rgb(220, 215, 215);
+}
+
+
+
+
