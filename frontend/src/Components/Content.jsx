@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import {Routes, Route, NavLink } from 'react-router-dom';
 import ProductList from './ProductList';
+import NewCategory from './NewCategory';
 
 
 const Content =({cart_items,setItems,products,setProducts,favourite,setFavourite})=>{
@@ -75,9 +76,9 @@ const[categories, setCategories] = useState([]);
              favourite={favourite}
              setFavourite={setFavourite}
              products={products}
-
               />} />
         ))}
+        <Route path="/categories/NewCategory" element={<NewCategory />}/>
        </Routes> 
         </>
 
@@ -97,6 +98,7 @@ const CategoryRoutes = ({categories}) => {
                     </NavLink>
                 ))
             }
+            <NavLink to="/categories/NewCategory" className="py-2">Add Category</NavLink>
         </nav>
     )
 }
