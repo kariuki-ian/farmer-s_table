@@ -3,6 +3,7 @@ import {Routes, Route, NavLink } from 'react-router-dom';
 import ProductList from './ProductList';
 import NewCategory from './NewCategory';
 import NewProduct from './NewProduct';
+import ProductDetailPage from './ProductDetailPage';
 
 const Content =({cart_items,setItems,products,setProducts,favourite,setFavourite})=>{
 //List Categories
@@ -52,7 +53,19 @@ const[categories, setCategories] = useState([]);
         fetchProducts();
       }, []);
     
-
+      const handleItems = (product) => {
+  
+        const index = items.findIndex((item) => item._id === product.id);
+        if (index !== -1) {
+            // If the item already exists in the cart, increase its quantity by 1
+            const updatedItems = [...items];
+            updatedItems[index].quantity += 1;
+            setItems(updatedItems);
+        } else {
+            // If the item is not in the cart, add it with quantity 1
+            setItems([...items, { ...product, quantity: 1 }]);
+        }
+      };
     return(
         <> 
         <CategoryRoutes
@@ -80,6 +93,10 @@ const[categories, setCategories] = useState([]);
         ))}
         <Route path="/categories/NewCategory" element={<NewCategory />}/>
         <Route path="/products/add" element={<NewProduct/>}/>
+        <Route path="/product/:productId" element={<ProductDetailPage products={products} handleItems={handleItems} />} />
+
+
+        
        </Routes>
         </>
 
@@ -100,7 +117,7 @@ const CategoryRoutes = ({categories}) => {
                 ))
             }
             <NavLink to="/categories/NewCategory" className="py-2">Add Category</NavLink>
-            <NavLink to="/products/add" classNane="py-2">Add Product</NavLink>
+            <NavLink to="/products/add" className="py-2">Add Product</NavLink>
         </nav>
     )
 }

@@ -37,6 +37,7 @@ const handleItems = (product) => {
         .map((product) => (
           <Product
             key={product._id}
+            product={product}
             name={product.name}
             image={product.image}
             description={product.description}

@@ -1,13 +1,26 @@
+import { useNavigate } from 'react-router-dom';
 import { VscHeartFilled } from "react-icons/vsc";
 import { useState } from "react";
 
+
 const Product = (props) => {
+
+
+    const { product } = props;
+    const navigate = useNavigate()
  const [textColor, setTextColor]= useState('text-slate-500');
    
     const changeColor= () =>
     {         
         setTextColor(textColor === 'text-slate-500'?'text-red-500':'text-slate-500');     
         props.favClick();
+    }
+
+    
+
+    
+    const navigateToDetailPage = () => {
+        navigate(`/product/${product._id}`);
     }
     return (
         <>
@@ -17,8 +30,9 @@ const Product = (props) => {
                 <img
                     src={props.image}
                     loading="lazy"
-                    alt="Product Image"
+                    alt="Product"
                     className='pdt_image object-contain h-56'
+                    onClick={navigateToDetailPage}
                 />
              
                 <VscHeartFilled className={`${textColor} favourite h-7 w-7 absolute top-2 right-2`} onClick={changeColor} />
