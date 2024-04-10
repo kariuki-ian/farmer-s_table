@@ -38,7 +38,7 @@ const products = [
     name: "Carrot",
     price: 0.49,
     category: "Vegetables",
-    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8Q1VYq0wVw1VgYqf9v4h8pQ1Qy9fG5rQs5nJ2Z1w&s",
+    image: "https://bcfresh.ca/wp-content/uploads/2021/11/Carrots.jpg",
     description: "Fresh Carrot",
   },
   {
