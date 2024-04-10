@@ -6,6 +6,7 @@ import Badge from "@mui/joy/Badge";
 import Typography from "@mui/joy/Typography";
 import { RiCloseCircleLine } from "react-icons/ri";
 import { useState } from "react";
+import { Link, RouterProvider } from "react-router-dom";
 
 // SideBar Content
 const Side_Content = (props) => {
@@ -71,7 +72,6 @@ const Side_Content = (props) => {
               key={item.image}
               className="flex border-1 rounded-md bg-white relative"
             >
-              {console.log(item)}
               <img
                 src={item.image}
                 loading="lazy"
@@ -108,6 +108,13 @@ const Side_Content = (props) => {
             </div>
           ))}
         </div>
+        {/* Go Shopping to checkout*/}
+        <Link
+          to="/checkout"
+          className="bg-emerald-600 text-white font-semibold rounded-md p-2 mt-4 mx-2 hover:bg-green-600 transition duration-300 ease-in-out"
+        >
+          Go Checkout
+        </Link>
       </>
     );
   }

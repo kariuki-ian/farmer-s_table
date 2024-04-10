@@ -1,9 +1,11 @@
+/* eslint-disable react/prop-types */
 import { useState, useEffect } from "react";
 import { Routes, Route, NavLink } from "react-router-dom";
 import ProductList from "./ProductList";
 import NewCategory from "./NewCategory";
 import NewProduct from "./NewProduct";
 import ProductDetailPage from "./ProductDetailPage";
+import Checkout from "./Checkout";
 
 const Content = ({
   cart_items,
@@ -13,7 +15,6 @@ const Content = ({
   favourite,
   setFavourite,
   inputValue,
-  setInputValue,
 }) => {
   //List Categories
   const [categories, setCategories] = useState([]);
@@ -115,6 +116,10 @@ const Content = ({
           element={
             <ProductDetailPage products={products} handleItems={handleItems} />
           }
+        />
+        <Route
+          path="/checkout"
+          element={<Checkout cart_items={cart_items} />}
         />
       </Routes>
     </>
