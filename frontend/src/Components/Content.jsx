@@ -12,6 +12,8 @@ const Content = ({
   setProducts,
   favourite,
   setFavourite,
+  inputValue,
+  setInputValue,
 }) => {
   //List Categories
   const [categories, setCategories] = useState([]);
@@ -85,6 +87,7 @@ const Content = ({
               favourite={favourite}
               setFavourite={setFavourite}
               products={products}
+              inputValue={inputValue}
             />
           }
         ></Route>
@@ -100,6 +103,7 @@ const Content = ({
                 favourite={favourite}
                 setFavourite={setFavourite}
                 products={products}
+                inputValue={inputValue}
               />
             }
           />

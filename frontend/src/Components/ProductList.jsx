@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+/* eslint-disable react/prop-types */
 import Product from "./Product";
 
 const ProductList = ({
@@ -8,6 +8,7 @@ const ProductList = ({
   favourite,
   setFavourite,
   products,
+  inputValue,
 }) => {
   const handleFavClick = (product) => {
     const index = favourite.findIndex(
@@ -37,7 +38,13 @@ const ProductList = ({
   return (
     <div className="container mx-auto mt-5 flex gap-5 flex-wrap px-10 z-20">
       {products
-        .filter((product) => !categoryName || product.category === categoryName) // Filter products by category name
+        .filter(
+          (product) =>
+            (!categoryName || product.category === categoryName) &&
+            (product.name.includes(inputValue)
+              ? product
+              : product.description.includes(inputValue))
+        ) // Filter products by category name
         .map((product) => (
           <Product
             key={product._id}

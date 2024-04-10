@@ -132,7 +132,7 @@ const Side_Content = (props) => {
 // NavBar
 const NavBar = (props) => {
   const option = props.products;
-  const [inputValue, setInputValue] = useState("");
+
   const [showFav, setShowFav] = useState(false);
   const [showCart, setShowCart] = useState(false);
 
@@ -149,9 +149,9 @@ const NavBar = (props) => {
             placeholder="Search"
             options={option}
             sx={{ width: 300 }}
-            inputValue={inputValue}
+            inputValue={props.inputValue}
             onInputChange={(event, newInputValue) => {
-              setInputValue(newInputValue);
+              props.setInputValue(newInputValue);
             }}
             getOptionLabel={(option) => option.name}
           />
