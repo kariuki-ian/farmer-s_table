@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 function Checkout({ cart_items }) {
   return (
     <div className="container mx-auto mt-5 flex gap-5 flex-wrap px-10 z-20 relative">
