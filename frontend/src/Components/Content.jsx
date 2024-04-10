@@ -130,7 +130,7 @@ const Content = ({
 //Categroies
 const CategoryRoutes = ({ categories }) => {
   return (
-    <nav className="grid grid-cols-7 divide-x divide-black md:w-2/4 mx-auto text-xs font-poppins bg-orange-200 mt-5 rounded-sm">
+    <nav className="grid xs:grid-cols-3 md:grid-cols-6 divide-x divide-black md:w-2/4 mx-auto text-xs font-poppins bg-orange-200 mt-5 rounded-sm">
       <NavLink to="/" className="py-2">
         All
       </NavLink>
