@@ -55,15 +55,15 @@ const[categories, setCategories] = useState([]);
     
       const handleItems = (product) => {
   
-        const index = items.findIndex((item) => item._id === product.id);
+        const index = cart_items.findIndex((item) => item._id === product._id);
         if (index !== -1) {
             // If the item already exists in the cart, increase its quantity by 1
-            const updatedItems = [...items];
+            const updatedItems = [...cart_items];;
             updatedItems[index].quantity += 1;
             setItems(updatedItems);
         } else {
             // If the item is not in the cart, add it with quantity 1
-            setItems([...items, { ...product, quantity: 1 }]);
+            setItems([...cart_items, { ...product, quantity: 1 }]);
         }
       };
     return(

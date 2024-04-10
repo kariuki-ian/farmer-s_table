@@ -18,8 +18,8 @@ const Side_Content = (props) => {
             <>
                 <h2 className="font-poppins w-fit text-sm font-semibold mt-2 ml-2 mb-4">Favourite Items</h2>
                 <div className="flex flex-col gap-4">
-                    {props.favourite.map((item) => (
-                        <div className="flex border-1 rounded-md bg-white">
+                    {props.favourite.map((item, index) => (
+                        <div key={item.id || index} className="flex border-1 rounded-md bg-white">
                             <img
                                 src={item.image}
                                 loading="lazy"
@@ -41,8 +41,8 @@ const Side_Content = (props) => {
             <>
                 <h2 className="font-poppins w-fit text-sm font-semibold mt-2 ml-2 mb-4">Shopping Cart</h2>
                 <div className="flex flex-col gap-4">
-                    {props.items.map((item) => (
-                        <div className="flex border-1 rounded-md bg-white">
+                    {props.items.map((item, index) => (
+                        <div key={item.id || index} className="flex border-1 rounded-md bg-white">
                             <img
                                 src={item.image}
                                 loading="lazy"
@@ -51,7 +51,7 @@ const Side_Content = (props) => {
                             />
                             <p className="font-poppins text-xs flex flex-col">
                                 <span className="w-fit mt-2 font-semibold">{item.name}</span>
-                                <span className="w-fit flex mt-2"><span className="font-semibold" >Description:</span><span>{item.description}</span></span>
+                                {/*<span className="w-fit flex mt-2"><span className="font-semibold" >Description:</span><span>{item.description}</span></span>*/}
                                 <span className="w-fit flex gap-2"><span className="font-semibold">Quantity:</span>{item.quantity}</span>
                             </p>
 
