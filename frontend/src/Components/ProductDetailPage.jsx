@@ -7,7 +7,6 @@ const ProductDetailPage = ({ products, handleItems }) => {
     const navigate = useNavigate();
     const [product, setProduct] = useState(null);
 
-
     
     useEffect(() => {
         
