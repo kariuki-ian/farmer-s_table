@@ -4,6 +4,7 @@ import { GiShoppingCart } from "react-icons/gi";
 import { FaRegHeart } from "react-icons/fa6";
 import Badge from "@mui/joy/Badge";
 import Typography from "@mui/joy/Typography";
+import Tooltip from "@mui/joy/Tooltip";
 import { RiCloseCircleLine } from "react-icons/ri";
 import { useState } from "react";
 import { Link, RouterProvider } from "react-router-dom";
@@ -33,8 +34,8 @@ const Side_Content = (props) => {
               />
               <p className="font-poppins text-xs">
                 <span className="w-fit x mt-2 font-semibold">{item.name}</span>
-                <span className="w-fit flex mt-2">
-                  <span className="font-semibold">Description:</span>
+                <span className="w-fit flex flex-row flex-wrap mt-2">
+                  <span className="font-semibold h-fit w-fit">Description:</span>
                   <span>{item.description}</span>
                 </span>
               </p>
@@ -42,7 +43,7 @@ const Side_Content = (props) => {
               <RiCloseCircleLine
                 color="red"
                 size={20}
-                className="absolute top-0 left-0 bg-white rounded-full hover:bg-red-300 transition duration-300 ease-in-out p-1"
+                className="absolute top-0 right-0 bg-white rounded-full hover:bg-red-300 transition duration-300 ease-in-out p-1"
                 onClick={() => {
                   const index = props.favourite.findIndex(
                     (likedProduct) => likedProduct.image === item.image
@@ -93,7 +94,7 @@ const Side_Content = (props) => {
               <RiCloseCircleLine
                 color="red"
                 size={20}
-                className="absolute top-0 left-0 bg-white rounded-full hover:bg-red-300 transition duration-300 ease-in-out p-1"
+                className="absolute top-0 right-0 w-6 h-6 bg-white rounded-full hover:bg-red-300 transition duration-300 ease-in-out p-1"
                 onClick={() => {
                   const index = props.items.findIndex(
                     (cartItem) => cartItem._id === item._id
@@ -107,20 +108,21 @@ const Side_Content = (props) => {
               />
             </div>
           ))}
+          {/* Go Shopping to checkout*/}
+          <Link
+            to="/checkout"
+            className="bg-emerald-600 text-white font-semibold rounded-md p-2 mt-4 ml-2 hover:bg-green-600 transition duration-300 ease-in-out"
+          >
+            Go Checkout
+          </Link>
         </div>
-        {/* Go Shopping to checkout*/}
-        <Link
-          to="/checkout"
-          className="bg-emerald-600 text-white font-semibold rounded-md p-2 mt-4 mx-2 hover:bg-green-600 transition duration-300 ease-in-out"
-        >
-          Go Checkout
-        </Link>
+
       </>
     );
   }
 
   return (
-    <div className="fixed right-0 bottom-0 h-full  w-[300px] backdrop-blur z-10 shadow-2xl ">
+    <div className="fixed right-0 bottom-0 h-full  w-[350px] backdrop-blur z-10 shadow-2xl ">
       <div>
         <button
           className="pl-64 w-full pt-2"
@@ -163,22 +165,25 @@ const NavBar = (props) => {
             getOptionLabel={(option) => option.name}
           />
           <div className="flex  gap-5">
-            <button
-              onClick={() => {
-                setShowCart(!showCart);
-              }}
-            >
-              <Badge
-                badgeContent={props.cart_length}
-                variant="soft"
-                color="success"
+            <Tooltip title="View Shopping Cart" color="success" variant="outlined" placement="top">
+              <button
+                onClick={() => {
+                  setShowCart(!showCart);
+                }}
               >
-                <Typography fontSize="xl">
-                  <GiShoppingCart className="h-7 w-7" />
-                </Typography>
-              </Badge>
-            </button>
-            <button
+                <Badge
+                  badgeContent={props.cart_length}
+                  variant="soft"
+                  color="success"
+                >
+                  <Typography fontSize="xl">
+                    <GiShoppingCart className="h-7 w-7" />
+                  </Typography>
+                </Badge>
+              </button>
+            </Tooltip>
+            <Tooltip title="View Favourites" color="danger" variant="outlined" placement="top">
+              <button
               onClick={() => {
                 setShowFav(!showFav);
               }}
@@ -193,6 +198,7 @@ const NavBar = (props) => {
                 </Typography>
               </Badge>
             </button>
+            </Tooltip>            
           </div>
         </div>
       </div>

@@ -53,7 +53,7 @@
 
 @media screen and (max-width: 480px) {
   .cards {
-      width: 80%;
+      width: 375px;
   }
   .container{
     width: 100%;

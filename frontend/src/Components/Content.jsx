@@ -7,6 +7,7 @@ import NewProduct from "./NewProduct";
 import ProductDetailPage from "./ProductDetailPage";
 import Checkout from "./Checkout";
 
+
 const Content = ({
   cart_items,
   setItems,
@@ -129,7 +130,7 @@ const Content = ({
 //Categroies
 const CategoryRoutes = ({ categories }) => {
   return (
-    <nav className="grid grid-cols-5 divide-x divide-black md:w-2/3 mx-auto text-xs font-poppins bg-orange-200 mt-5 rounded-sm">
+    <nav className="grid grid-cols-7 divide-x divide-black md:w-2/4 mx-auto text-xs font-poppins bg-orange-200 mt-5 rounded-sm">
       <NavLink to="/" className="py-2">
         All
       </NavLink>

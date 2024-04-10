@@ -21,8 +21,8 @@ const Product = (props) => {
     }
     return (
         <>
-        {console.log(textColor)}
-         <div className='cards md:w-[20%] rounded-md shadow-md pb-5'>
+     
+         <div className='cards md:w-[20%]  rounded-md shadow-md pb-5'>
             <div className="relative">
                 <img
                     src={props.image}
@@ -52,7 +52,7 @@ const Product = (props) => {
 
   const navigateToDetailPage = () => {
     navigate(`/product/${product._id}`);
-  };
+  
   return (
     <>
       <div className="cards md:w-[18%] rounded-md shadow-md pb-5 relative">
@@ -86,7 +86,7 @@ const Product = (props) => {
         </button>
       </div>
     </>
-  );
+  );}
 
 
 export default Product;

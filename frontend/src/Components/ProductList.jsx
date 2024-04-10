@@ -36,7 +36,7 @@ const ProductList = ({
   };
 
   return (
-    <div className="container mx-auto mt-5 flex gap-5 flex-wrap px-10 z-20">
+    <div className="container mx-auto mt-5 flex gap-5 flex-wrap md:pl-40 z-20">
       {products
         .filter(
           (product) =>

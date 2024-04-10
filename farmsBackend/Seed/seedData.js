@@ -142,6 +142,7 @@ const products = [
   
   
   
+  
 ];
 
 module.exports = { categories, users, products };
