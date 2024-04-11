@@ -126,7 +126,6 @@ const Content = ({
 
 //Categroies
 const CategoryRoutes = ({ categories, user }) => {
-  console.log(user);
   const isAdmin = user?.role === "admin";
 
   return (

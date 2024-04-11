@@ -10,13 +10,13 @@ function App() {
     // getting stored value
     const saved = localStorage.getItem("favourite");
     const initialValue = JSON.parse(saved);
-    return initialValue || "";
+    return initialValue || [];
   });
   const [cart_items, setItems] = useState(() => {
     // getting stored value
     const saved = localStorage.getItem("cart");
     const initialValue = JSON.parse(saved);
-    return initialValue || "";
+    return initialValue || [];
   });
   const [products, setProducts] = useState([]);
   const [inputValue, setInputValue] = useState("");

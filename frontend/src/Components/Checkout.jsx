@@ -23,7 +23,7 @@ function Checkout({ cart_items, user }) {
         </div>
       ))}
       {/* calculate total price*/}
-      <div className=" w-full bg-white p-5 border-t-2 border-gray-200">
+      <div className=" w-full p-5 border-t-2 border-gray-200 -z-10">
         <h2 className="text-lg font-semibold">
           Total: $
           {cart_items
