@@ -7,7 +7,7 @@ const NewCategory = () => {
     event.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:3000/categories", {
+      const response = await fetch("http://farm-project-pu8sorey0-jacks-projects-e96ea708.vercel.app/categories", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
