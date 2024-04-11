@@ -19,7 +19,7 @@ const Login = ({ setUser }) => {
     e.preventDefault();
     setError("");
     // fetch to send the data to the server
-    fetch("http://farm-project-pu8sorey0-jacks-projects-e96ea708.vercel.app/users/login", {
+    fetch("http://localhost:3000/users/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

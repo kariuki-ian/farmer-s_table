@@ -25,7 +25,7 @@ const Content = ({
 
   async function getCategories() {
     try {
-      const response = await fetch("http://farm-project-pu8sorey0-jacks-projects-e96ea708.vercel.app/categories");
+      const response = await fetch("http://localhost:3000/categories");
       if (!response.ok) {
         throw new Error("Failed to fetch categories");
       }
@@ -53,7 +53,7 @@ const Content = ({
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch("http://farm-project-pu8sorey0-jacks-projects-e96ea708.vercel.app/products");
+        const response = await fetch("http://localhost:3000/products");
         if (!response.ok) {
           throw new Error("Failed to fetch products");
         }

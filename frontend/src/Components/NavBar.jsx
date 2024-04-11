@@ -22,7 +22,7 @@ const Side_Content = (props) => {
         <h2 className="font-poppins w-fit text-sm font-semibold mt-2 ml-2 mb-4">
           Favourite Items
         </h2>
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-4 overscroll-y-auto">
           {props.favourite.map((item) => (
             <div
               key={item._id}
@@ -55,7 +55,7 @@ const Side_Content = (props) => {
         <h2 className="font-poppins w-fit text-sm font-semibold mt-2 ml-2 mb-4">
           Shopping Cart
         </h2>
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-4 h-screen overflow-y-scroll scroll-smooth">
           {props.items.map((item) => (
             <div
               key={item.image}
