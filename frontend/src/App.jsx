@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import NavBar from "./Components/NavBar";
 import { BrowserRouter as Router } from "react-router-dom";
@@ -6,10 +6,36 @@ import Content from "./Components/Content";
 
 function App() {
   //Define favourite, Shopping Cart and Products variables
-  const [favourite, setFavourite] = useState([]);
-  const [cart_items, setItems] = useState([]);
+  const [favourite, setFavourite] = useState(() => {
+    // getting stored value
+    const saved = localStorage.getItem("favourite");
+    const initialValue = JSON.parse(saved);
+    return initialValue || "";
+  });
+  const [cart_items, setItems] = useState(() => {
+    // getting stored value
+    const saved = localStorage.getItem("cart");
+    const initialValue = JSON.parse(saved);
+    return initialValue || "";
+  });
   const [products, setProducts] = useState([]);
   const [inputValue, setInputValue] = useState("");
+  const [user, setUser] = useState();
+  useEffect(() => {
+    //get user info from local storage
+    const user = localStorage.getItem("user");
+    if (user) {
+      setUser(JSON.parse(user));
+    }
+  }, []);
+  useEffect(() => {
+    //store favourite items to local storage
+    localStorage.setItem("favourite", JSON.stringify(favourite));
+  }, [favourite]);
+  useEffect(() => {
+    //store cart items to local storage
+    localStorage.setItem("cart", JSON.stringify(cart_items));
+  }, [cart_items]);
 
   return (
     <Router>
@@ -25,6 +51,8 @@ function App() {
         products={products}
         inputValue={inputValue}
         setInputValue={setInputValue}
+        user={user}
+        setUser={setUser}
       />
       <Content
         //Favourite and CartItems
@@ -36,6 +64,8 @@ function App() {
         setProducts={setProducts}
         inputValue={inputValue}
         setInputValue={setInputValue}
+        user={user}
+        setUser={setUser}
       />
     </Router>
   );

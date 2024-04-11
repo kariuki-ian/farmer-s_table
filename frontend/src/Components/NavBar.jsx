@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import logo from "../assets/logo.svg";
 import Autocomplete from "@mui/joy/Autocomplete";
 import { GiShoppingCart } from "react-icons/gi";
@@ -7,7 +8,8 @@ import Typography from "@mui/joy/Typography";
 import Tooltip from "@mui/joy/Tooltip";
 import { RiCloseCircleLine } from "react-icons/ri";
 import { useState } from "react";
-import { Link, RouterProvider } from "react-router-dom";
+import { Link } from "react-router-dom";
+import UserMenu from "./UserMenu";
 
 // SideBar Content
 const Side_Content = (props) => {
@@ -35,7 +37,9 @@ const Side_Content = (props) => {
               <p className="font-poppins text-xs">
                 <span className="w-fit x mt-2 font-semibold">{item.name}</span>
                 <span className="w-fit flex flex-row flex-wrap mt-2">
-                  <span className="font-semibold h-fit w-fit">Description:</span>
+                  <span className="font-semibold h-fit w-fit">
+                    Description:
+                  </span>
                   <span>{item.description}</span>
                 </span>
               </p>
@@ -116,7 +120,6 @@ const Side_Content = (props) => {
             Go Checkout
           </Link>
         </div>
-
       </>
     );
   }
@@ -147,6 +150,11 @@ const NavBar = (props) => {
 
   return (
     <>
+      {props.user && (
+        <div className="bg-emerald-600 text-white text-center font-poppins font-semibold p-2">
+          Welcome {props.user.name}
+        </div>
+      )}
       {/* Navbar */}
       <div className="flex flex-wrap justify-between align-middle">
         <img src={logo} className="w-40 h-20" alt="Brand Logo" />
@@ -164,8 +172,17 @@ const NavBar = (props) => {
             }}
             getOptionLabel={(option) => option.name}
           />
-          <div className="flex  gap-5">
-            <Tooltip title="View Shopping Cart" color="success" variant="outlined" placement="top">
+          <div className="flex  gap-5 relative">
+            <div className="absolute right-0 top-5">
+              <UserMenu user={props.user} setUser={props.setUser} />
+            </div>
+
+            <Tooltip
+              title="View Shopping Cart"
+              color="success"
+              variant="outlined"
+              placement="top"
+            >
               <button
                 onClick={() => {
                   setShowCart(!showCart);
@@ -182,23 +199,29 @@ const NavBar = (props) => {
                 </Badge>
               </button>
             </Tooltip>
-            <Tooltip title="View Favourites" color="danger" variant="outlined" placement="top">
-              <button
-              onClick={() => {
-                setShowFav(!showFav);
-              }}
+            <Tooltip
+              title="View Favourites"
+              color="danger"
+              variant="outlined"
+              placement="top"
+              className="mr-12"
             >
-              <Badge
-                badgeContent={props.favourite_length}
-                variant="soft"
-                color="danger"
+              <button
+                onClick={() => {
+                  setShowFav(!showFav);
+                }}
               >
-                <Typography fontSize="xl">
-                  <FaRegHeart className="h-6 w-6" />
-                </Typography>
-              </Badge>
-            </button>
-            </Tooltip>            
+                <Badge
+                  badgeContent={props.favourite_length}
+                  variant="soft"
+                  color="danger"
+                >
+                  <Typography fontSize="xl">
+                    <FaRegHeart className="h-6 w-6" />
+                  </Typography>
+                </Badge>
+              </button>
+            </Tooltip>
           </div>
         </div>
       </div>

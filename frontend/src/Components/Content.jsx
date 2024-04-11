@@ -6,7 +6,8 @@ import NewCategory from "./NewCategory";
 import NewProduct from "./NewProduct";
 import ProductDetailPage from "./ProductDetailPage";
 import Checkout from "./Checkout";
-
+import Login from "./Login";
+import Signup from "./Signup";
 
 const Content = ({
   cart_items,
@@ -16,6 +17,8 @@ const Content = ({
   favourite,
   setFavourite,
   inputValue,
+  user,
+  setUser,
 }) => {
   //List Categories
   const [categories, setCategories] = useState([]);
@@ -64,10 +67,9 @@ const Content = ({
     fetchProducts();
   }, []);
 
- 
   return (
     <>
-      <CategoryRoutes categories={categories} />
+      <CategoryRoutes categories={categories} user={user} />
       <Routes>
         <Route
           path="/"
@@ -104,22 +106,31 @@ const Content = ({
         <Route
           path="/product/:productId"
           element={
-            <ProductDetailPage products={products} cart_items={cart_items} setItems={setItems} />
+            <ProductDetailPage
+              products={products}
+              cart_items={cart_items}
+              setItems={setItems}
+            />
           }
         />
         <Route
           path="/checkout"
-          element={<Checkout cart_items={cart_items} />}
+          element={<Checkout cart_items={cart_items} user={user} />}
         />
+        <Route path="/login" element={<Login setUser={setUser} />} />
+        <Route path="/register" element={<Signup />} />
       </Routes>
     </>
   );
 };
 
 //Categroies
-const CategoryRoutes = ({ categories }) => {
+const CategoryRoutes = ({ categories, user }) => {
+  console.log(user);
+  const isAdmin = user?.role === "admin";
+
   return (
-    <nav className="grid xs:grid-cols-3 md:grid-cols-6 divide-x divide-black md:w-2/4 mx-auto text-xs font-poppins bg-orange-200 mt-5 rounded-sm">
+    <nav className="flex flex-row justify-around md:w-2/4 mx-auto text-xs font-poppins bg-orange-200 mt-5 rounded-sm">
       <NavLink to="/" className="py-2">
         All
       </NavLink>
@@ -133,12 +144,16 @@ const CategoryRoutes = ({ categories }) => {
             {category.name}
           </NavLink>
         ))}
-      <NavLink to="/categories/NewCategory" className="py-2">
-        Add Category
-      </NavLink>
-      <NavLink to="/products/add" className="py-2">
-        Add Product
-      </NavLink>
+      {isAdmin && (
+        <>
+          <NavLink to="/categories/NewCategory" className="py-2">
+            Add Category
+          </NavLink>
+          <NavLink to="/products/add" className="py-2">
+            Add Product
+          </NavLink>
+        </>
+      )}
     </nav>
   );
 };

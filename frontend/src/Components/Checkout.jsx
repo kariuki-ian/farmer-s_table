@@ -1,11 +1,11 @@
 /* eslint-disable react/prop-types */
-function Checkout({ cart_items }) {
+function Checkout({ cart_items, user }) {
   return (
     <div className="container mx-auto mt-5 flex gap-5 flex-wrap px-10 z-20 relative">
       {cart_items.map((product) => (
         <div
           key={product._id}
-          className="flex flex-col items-center border-2 border-gray-200 rounded-lg p-5"
+          className="flex flex-col items-center border-2 border-gray-200 rounded-lg p-5 w-56 "
         >
           <img
             src={product.image}
@@ -26,16 +26,22 @@ function Checkout({ cart_items }) {
       <div className=" w-full bg-white p-5 border-t-2 border-gray-200">
         <h2 className="text-lg font-semibold">
           Total: $
-          {cart_items.reduce(
-            (total, product) => total + product.price * product.quantity,
-            0
-          )}
+          {cart_items
+            .reduce(
+              (total, product) => total + product.price * product.quantity,
+              0
+            )
+            .toFixed(2)}
         </h2>
       </div>
       {/*Order button*/}
-      <button className="bg-emerald-600 mx-auto text-white font-semibold rounded-md p-2 mt-4 hover:bg-green-600 transition duration-300 ease-in-out">
-        Order
-      </button>
+      {user ? (
+        <button className="bg-emerald-600 mx-auto text-white font-semibold rounded-md p-2 mt-4 hover:bg-green-600 transition duration-300 ease-in-out">
+          Order
+        </button>
+      ) : (
+        <p className="text-red-500 mx-auto">Please login to order</p>
+      )}
     </div>
   );
 }
