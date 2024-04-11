@@ -1,0 +1,50 @@
+.about-us-page {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 40px;
+    background: linear-gradient(to right, #ffffff, #f7f7f7); 
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+    font-family: 'Open Sans', sans-serif; 
+    color: #333; 
+  }
+  
+  .about-us-image {
+    width: 100%;
+    max-width: 400px; 
+    height: auto;
+    border-radius: 10px;
+    margin: 0 auto 30px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    transition: transform 0.3s ease; 
+  }
+  
+  .about-us-image:hover {
+    transform: translateY(-10px);
+  }
+  
+  h1 {
+    font-size: 8rem; 
+    color: rgb(5 150 105);; 
+    text-align: center; 
+    margin-bottom: auto; 
+    font-family: 'Merriweather', serif;
+  }
+  
+  p {
+    font-size: 1.1rem;
+    color: #555; 
+    line-height: 1.8; 
+    margin-bottom: 20px; 
+    text-align: justify; 
+  }
+  
+ 
+  strong {
+    color: rgb(5 150 105);;
+  }
+  
+  em {
+    font-style: italic;
+    color: rgb(5 150 105);;
+  }

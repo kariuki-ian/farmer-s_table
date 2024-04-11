@@ -6,6 +6,7 @@ import Badge from '@mui/joy/Badge';
 import Typography from '@mui/joy/Typography';
 import { RiCloseCircleLine } from "react-icons/ri";
 import { useState } from "react";
+import { NavLink } from "react-router-dom";
 
 
 // SideBar Content
@@ -115,6 +116,8 @@ const NavBar = ( props ) => {
                                 <Typography fontSize="xl"><FaRegHeart className="h-6 w-6" /></Typography>
                             </Badge>
                         </button>
+                         
+                        -
 
 
                     </div>
@@ -132,8 +135,9 @@ const NavBar = ( props ) => {
              items={props.cart}
              favourite={props.favourite_items}
               />
+              
         )}
-
+        
         </>
     )
 

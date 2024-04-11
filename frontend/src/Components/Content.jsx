@@ -4,6 +4,7 @@ import ProductList from './ProductList';
 import NewCategory from './NewCategory';
 import NewProduct from './NewProduct';
 import ProductDetailPage from './ProductDetailPage';
+import AboutUs from './AboutUs';
 
 const Content =({cart_items,setItems,products,setProducts,favourite,setFavourite})=>{
 //List Categories
@@ -93,6 +94,7 @@ const[categories, setCategories] = useState([]);
         ))}
         <Route path="/categories/NewCategory" element={<NewCategory />}/>
         <Route path="/products/add" element={<NewProduct/>}/>
+        <Route path="/about" element={<AboutUs />} />
         <Route path="/product/:productId" element={<ProductDetailPage products={products} handleItems={handleItems} />} />
 
 
@@ -118,6 +120,7 @@ const CategoryRoutes = ({categories}) => {
             }
             <NavLink to="/categories/NewCategory" className="py-2">Add Category</NavLink>
             <NavLink to="/products/add" className="py-2">Add Product</NavLink>
+            <NavLink to="/about" className="py-2">About Us</NavLink>
         </nav>
     )
 }
