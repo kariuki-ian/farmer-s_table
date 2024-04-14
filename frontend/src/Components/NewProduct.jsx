@@ -14,7 +14,7 @@ const NewProduct = () => {
 
   const fetchCategories = async () => {
     try {
-      const response = await fetch("http://farm-project-pu8sorey0-jacks-projects-e96ea708.vercel.app/categories");
+      const response = await fetch("http://localhost:3000/categories");
       const data = await response.json();
       setCategories(data);
     } catch (error) {
@@ -25,7 +25,7 @@ const NewProduct = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("http://farm-project-pu8sorey0-jacks-projects-e96ea708.vercel.app/products", {
+      const response = await fetch("http://localhost:3000/products", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
