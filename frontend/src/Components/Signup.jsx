@@ -45,7 +45,7 @@ const Signup = () => {
       return;
     }
     // use fetch to send the data to the server
-    fetch("http://farm-project-pu8sorey0-jacks-projects-e96ea708.vercel.app/users/register", {
+    fetch("http://localhost:3000/users/register", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

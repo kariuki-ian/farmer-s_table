@@ -22,10 +22,10 @@ const Side_Content = (props) => {
         <h2 className="font-poppins w-fit text-sm font-semibold mt-2 ml-2 mb-4">
           Favourite Items
         </h2>
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-4 overscroll-y-auto">
           {props.favourite.map((item) => (
             <div
-              key={item.image}
+              key={item._id}
               className="flex border-1 rounded-md bg-white relative"
             >
               <img
@@ -42,23 +42,7 @@ const Side_Content = (props) => {
                   </span>
                   <span>{item.description}</span>
                 </span>
-              </p>
-              {/* Remove Favourite */}
-              <RiCloseCircleLine
-                color="red"
-                size={20}
-                className="absolute top-0 right-0 bg-white rounded-full hover:bg-red-300 transition duration-300 ease-in-out p-1"
-                onClick={() => {
-                  const index = props.favourite.findIndex(
-                    (likedProduct) => likedProduct.image === item.image
-                  );
-                  if (index !== -1) {
-                    const updatedLikedProducts = [...props.favourite];
-                    updatedLikedProducts.splice(index, 1);
-                    props.setFavourite(updatedLikedProducts);
-                  }
-                }}
-              />
+              </p>             
             </div>
           ))}
         </div>
@@ -71,7 +55,7 @@ const Side_Content = (props) => {
         <h2 className="font-poppins w-fit text-sm font-semibold mt-2 ml-2 mb-4">
           Shopping Cart
         </h2>
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-4 h-screen overflow-y-scroll scroll-smooth">
           {props.items.map((item) => (
             <div
               key={item.image}
@@ -128,7 +112,7 @@ const Side_Content = (props) => {
     <div className="fixed right-0 bottom-0 h-full  w-[350px] backdrop-blur z-10 shadow-2xl ">
       <div>
         <button
-          className="pl-64 w-full pt-2"
+          className="ml-80 w-fit pt-2"
           onClick={() => {
             props.showFav ? props.setShowFav(false) : props.setShowCart(false);
           }}
